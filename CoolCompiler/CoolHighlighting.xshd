@@ -1,0 +1,65 @@
+﻿<?xml version="1.0"?>
+<SyntaxDefinition name="Cool" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+	<Color name="Comment" foreground="Green" />
+	<Color name="String" foreground="SaddleBrown" />
+	<Color name="Keywords" foreground="Blue" />
+	<Color name="BasicTypes" foreground="Blue" />
+	<Color name="Types" foreground="DarkCyan" />
+	
+	<!-- This is the main ruleset. -->
+	<RuleSet>
+		<Span color="Comment" begin="--" />
+		<Span color="Comment" multiline="true" begin="\(\*" end="\*\)" />
+		
+		<Span color="String">
+			<Begin>"</Begin>
+			<End>"</End>
+			<RuleSet>
+				<!-- nested span for escape sequences -->
+				<Span begin="\\" end="." />
+			</RuleSet>
+		</Span>
+
+		<Keywords color="BasicTypes">
+			<Word>Int</Word>
+			<Word>Bool</Word>
+			<Word>String</Word>
+			<Word>Object</Word>
+			<Word>SELF_TYPE</Word>
+			<Word>self</Word>
+			<Word>void</Word>
+		</Keywords>
+		
+		<Keywords color="Keywords">
+			<Word>class</Word>
+			<Word>else</Word>
+			<Word>false</Word>
+			<Word>fi</Word>
+			<Word>if</Word>
+			<Word>in</Word>
+			<Word>inherits</Word>
+			<Word>isvoid</Word>
+			<Word>let</Word>
+			<Word>loop</Word>
+			<Word>pool</Word>
+			<Word>then</Word>
+			<Word>while</Word>
+			<Word>case</Word>
+			<Word>esac</Word>
+			<Word>new</Word>
+			<Word>of</Word>
+			<Word>not</Word>
+			<Word>true</Word>
+		</Keywords>
+
+		<!-- Digits -->
+		<Rule foreground="DarkBlue">
+				\b0[xX][0-9a-fA-F]+  # hex number
+				|\b
+				(    \d+(\.[0-9]+)?   #number with optional floating point
+				|    \.[0-9]+         #or just starting with floating point
+				)
+				([eE][+-]?[0-9]+)? # optional exponent
+		</Rule>
+	</RuleSet>
+</SyntaxDefinition>

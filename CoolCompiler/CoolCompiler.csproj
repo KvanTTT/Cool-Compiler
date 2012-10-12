@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2ADD927C-A7F0-4EC5-99DC-47CC0A6F989B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CoolCompiler</RootNamespace>
+    <AssemblyName>CoolCompiler</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\Reference\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\Reference\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CompilerErrors\InvalidReturnTypeError.cs" />
+    <Compile Include="CoolTokens.cs" />
+    <Compile Include="Token.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CompilerErrors\ArithmeticOperatorError.cs" />
+    <Compile Include="CompilerErrors\ComminLexerError.cs" />
+    <Compile Include="CompilerErrors\CommonParserError.cs" />
+    <Compile Include="CompilerErrors\CompilerException.cs" />
+    <Compile Include="CompilerErrors\FileInUseError.cs" />
+    <Compile Include="CompilerErrors\UndefinedClassError.cs" />
+    <Compile Include="CompilerErrors\UndefinedFunctionError.cs" />
+    <Compile Include="CompilerErrors\UnexpectedTokenError.cs" />
+    <Compile Include="CompilerErrors\CommonError.cs" />
+    <Compile Include="CompilerErrors\ComparsionOperatorError.cs" />
+    <Compile Include="CompilerErrors\CompilerError.cs" />
+    <Compile Include="CompilerErrors\EarlyExitErrorLexer.cs" />
+    <Compile Include="CompilerErrors\EarlyExitErrorParser.cs" />
+    <Compile Include="CompilerErrors\enmCompilerErrorStage.cs" />
+    <Compile Include="CompilerErrors\enmCompilerErrorType.cs" />
+    <Compile Include="CompilerErrors\EntryPointError.cs" />
+    <Compile Include="CompilerErrors\FunctionArgAssignError.cs" />
+    <Compile Include="CompilerErrors\FunctionArgumentsError.cs" />
+    <Compile Include="CompilerErrors\IfOperatorError.cs" />
+    <Compile Include="CompilerErrors\IncompatibleTypesError.cs" />
+    <Compile Include="CompilerErrors\IsVoidCheckingError.cs" />
+    <Compile Include="CompilerErrors\MismatchedSetErrorLexer.cs" />
+    <Compile Include="CompilerErrors\MismatchedSetErrorParser.cs" />
+    <Compile Include="CompilerErrors\NegOperationError.cs" />
+    <Compile Include="CompilerErrors\NotOperationError.cs" />
+    <Compile Include="CompilerErrors\NoViableAltErrorLexer.cs" />
+    <Compile Include="CompilerErrors\NoViableAltErrorParser.cs" />
+    <Compile Include="CompilerErrors\RecognitionError.cs" />
+    <Compile Include="CompilerErrors\RewriteEarlyExitError.cs" />
+    <Compile Include="CompilerErrors\UndefinedIdError.cs" />
+    <Compile Include="CompilerErrors\WhileOperatorError.cs" />
+    <Compile Include="CoolCompiler.cs" />
+    <Compile Include="ObjectDefs\ArgObjectDef.cs" />
+    <Compile Include="CoolFoldingStrategy.cs" />
+    <Compile Include="CoolCodeGenerator.cs" />
+    <Compile Include="ObjectDefs\enmObjectScope.cs" />
+    <Compile Include="ObjectDefs\FieldObjectDef.cs" />
+    <Compile Include="ObjectDefs\LocalObjectDef.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CoolCompletionData.cs" />
+    <Compile Include="ObjectDefs\MethodDef.cs" />
+    <Compile Include="ObjectDefs\ObjectDef.cs" />
+    <Compile Include="ObjectDefs\ValueObjectDef.cs" />
+    <Compile Include="output\CoolGrammarLexer.cs" />
+    <Compile Include="output\CoolGrammarParser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CoolHighlighting.xshd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="CoolGrammar.g" />
+    <None Include="output\CoolGrammar.tokens" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Copy.png" />
+    <Resource Include="Images\Cut.png" />
+    <Resource Include="Images\Delete.png" />
+    <Resource Include="Images\Open.png" />
+    <Resource Include="Images\Paste.png" />
+    <Resource Include="Images\Redo.png" />
+    <Resource Include="Images\Save.png" />
+    <Resource Include="Images\Undo.png" />
+    <Resource Include="Images\WordWrap.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

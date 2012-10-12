@@ -1,0 +1,114 @@
+﻿<Window x:Class="CoolCompiler.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="Cool Compiler" Height="768" Width="1024" xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit"
+		xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+		xmlns:my="clr-namespace:ICSharpCode.AvalonEdit.CodeCompletion;assembly=ICSharpCode.AvalonEdit" SizeChanged="Window_SizeChanged" KeyUp="Window_KeyUp" Closed="Window_Closed"
+		TextOptions.TextFormattingMode="Display">
+	<DockPanel>
+		<ToolBar DockPanel.Dock="Top">
+			<ToolBar.Resources>
+				<Style TargetType="{x:Type Image}">
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}, AncestorLevel=1}, Path=IsEnabled}" Value="False">
+							<Setter Property="Opacity" Value="0.30" />
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</ToolBar.Resources>
+			<Button Name="openFile" Click="openFile_Click">
+				<Image Source="Images/Open.png" Height="16" />
+			</Button>
+			<Button Name="saveFile" Click="saveFile_Click">
+				<Image Source="Images/Save.png" Height="16"/>
+			</Button>
+			<Separator/>
+			<Button Command="Cut">
+				<Image Source="Images/Cut.png" Height="16"/>
+			</Button>
+			<Button Command="Copy">
+				<Image Source="Images/Copy.png" Height="16"/>
+			</Button>
+			<Button Command="Paste">
+				<Image Source="Images/Paste.png" Height="16"/>
+			</Button>
+			<Button Command="Delete">
+				<Image Source="Images/Delete.png" Height="16"/>
+			</Button>
+			<Separator/>
+			<Button Command="Undo">
+				<Image Source="Images/Undo.png" Height="16"/>
+			</Button>
+			<Button Command="Redo">
+				<Image Source="Images/Redo.png" Height="16"/>
+			</Button>
+			<Separator/>
+			<CheckBox IsChecked="{Binding ElementName=tbEditor,Path=WordWrap}">
+				<Image Source="Images/WordWrap.png" Height="16"/>
+			</CheckBox>
+			<CheckBox IsChecked="{Binding ElementName=tbEditor,Path=ShowLineNumbers}">
+				<TextBlock Width="16" TextAlignment="Center">#</TextBlock>
+			</CheckBox>
+			<CheckBox IsChecked="{Binding ElementName=tbEditor,Path=Options.ShowEndOfLine}">
+				<TextBlock Width="16" TextAlignment="Center">¶</TextBlock>
+			</CheckBox>
+		</ToolBar>
+		<Grid Name="MainGrid">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="401*" Name="RowDefinition1" />
+				<RowDefinition Height="4*" Name="RowDefinition2" />
+				<RowDefinition Height="154*" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="565*" Name="ColumnDefinition1" />
+				<ColumnDefinition Width="5*" Name="ColumnDefinition2" />
+				<ColumnDefinition Width="261*" />
+			</Grid.ColumnDefinitions>
+			<avalonedit:TextEditor
+				Name="tbEditor"
+				FontFamily="Consolas"
+				FontSize="10pt"
+				SyntaxHighlighting="Cool Highlighting">
+			</avalonedit:TextEditor>
+			<GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Grid.RowSpan="3" />
+			<StackPanel Grid.Column="2" Grid.RowSpan="3">
+				<Button Content="Compile" Name="btnCompile" Margin="8" Height="29" Click="btnCompile_Click" />
+				<Button Content="Compile and Run" Margin="8" Height="29" Name="btnCompileAndRun" Click="btnCompileAndRun_Click" />
+				<TabControl Name="tabControl1" Height="611">
+					<TabItem Header="Tokens" Name="tiTokens">
+						<Grid>
+							<DataGrid AutoGenerateColumns="False" Name="dgTokens" MouseDoubleClick="dgTokens_MouseDoubleClick">
+								<DataGrid.Columns>
+									<DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=OneWay}"/>
+									<DataGridTextColumn Header="Value" Binding="{Binding Value, Mode=OneWay}" MaxWidth="80" />
+									<DataGridTextColumn Header="Line" Binding="{Binding Line, Mode=OneWay}" MinWidth="55" MaxWidth="55" />
+									<DataGridTextColumn Header="Column" Binding="{Binding Column, Mode=OneWay}" MinWidth="55" MaxWidth="55" />
+								</DataGrid.Columns>
+							</DataGrid>
+						</Grid>
+					</TabItem>
+					<TabItem Header="Syntax Tree" IsSelected="True">
+						<TreeView Name="trvSyntaxTree" MouseDoubleClick="trvSyntaxTree_MouseDoubleClick" />
+					</TabItem>
+				</TabControl>
+            </StackPanel>
+			<TabControl Name="tabCtrlLogAndErrors" TabStripPlacement="Bottom" Grid.Row="2">
+				<TabItem Header="Errors" Name="tabItemErrors">
+					<DataGrid AutoGenerateColumns="False" Name="dataGridErrors" MouseDoubleClick="dataGridErrors_MouseDoubleClick">
+						<DataGrid.Columns>
+							<DataGridTextColumn Binding="{Binding Number, Mode=OneWay}" CanUserResize="False" Header="#" MinWidth="30" />
+							<DataGridTextColumn Binding="{Binding Description, Mode=OneWay}" Header="Description" MinWidth="100" />
+							<DataGridTextColumn Binding="{Binding Line, Mode=OneWay}" Header="Line" MinWidth="40" />
+							<DataGridTextColumn Binding="{Binding ColumnStart, Mode=OneWay}" Header="Column" MinWidth="40" />
+							<DataGridTextColumn Binding="{Binding StageString, Mode=OneWay}" Header="Stage" MinWidth="40" />
+						</DataGrid.Columns>
+					</DataGrid>
+				</TabItem>
+				<TabItem Header="Output" Name="tabItemOutput" IsSelected="True">
+					<TextBox Name="tbLog" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+				</TabItem>
+			</TabControl>
+			<GridSplitter HorizontalAlignment="Stretch" Name="gridSplitter1" Grid.Row="1" />
+		</Grid>
+	</DockPanel>
+</Window>
