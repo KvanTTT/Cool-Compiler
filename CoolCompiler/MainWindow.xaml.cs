@@ -200,30 +200,37 @@ namespace CoolCompiler
 		{
 			Log.AppendFormat("[{0}] Starting compilation...{1}", DateTime.Now.ToShortTimeString(), Environment.NewLine);
 
-			tbEditor.Save(CurrentFileName);
-
-			Compiler = new Compiler();
-			Compiler.Compile(CurrentFileName, tbEditor.Text);
-
-			if (Compiler.HasErrors)
+			if (string.IsNullOrEmpty(CurrentFileName))
 			{
-				Log.AppendFormat("[{0}] Some errors has been detected.{1}", DateTime.Now.ToShortTimeString(), Environment.NewLine);
-				Log.AppendFormat("[{0}] Compilation failed. '{1}' has not generated {2}", DateTime.Now.ToShortTimeString(),
-					Compiler.GeneratedProgramName, Environment.NewLine);
+				Log.AppendFormat("[{0}] File should be saved before compilation.{1}", DateTime.Now.ToShortTimeString(), Environment.NewLine);
 			}
 			else
-				Log.AppendFormat("[{0}] The '{1}' file has been generated and saved.{2}", DateTime.Now.ToShortTimeString(), 
-					Compiler.GeneratedProgramName, Environment.NewLine);
+			{
+				tbEditor.Save(CurrentFileName);
 
-			Log.AppendLine();
+				Compiler = new Compiler();
+				Compiler.Compile(CurrentFileName, tbEditor.Text);
+
+				if (Compiler.HasErrors)
+				{
+					Log.AppendFormat("[{0}] Some errors has been detected.{1}", DateTime.Now.ToShortTimeString(), Environment.NewLine);
+					Log.AppendFormat("[{0}] Compilation failed. '{1}' has not generated {2}", DateTime.Now.ToShortTimeString(),
+						Compiler.GeneratedProgramName, Environment.NewLine);
+				}
+				else
+					Log.AppendFormat("[{0}] The '{1}' file has been generated and saved.{2}", DateTime.Now.ToShortTimeString(),
+						Compiler.GeneratedProgramName, Environment.NewLine);
+
+				Log.AppendLine();
+
+				FillLexerAndParserTables(Compiler.Tree.Tree);
+				dataGridErrors.ItemsSource = Compiler.Errors;
+				dgTokens.ItemsSource = Compiler.Tokens;
+			}
 
 			tbLog.Text = Log.ToString();
 			tabCtrlLogAndErrors.SelectedIndex = 1;
 			tbLog.ScrollToEnd();
-
-			FillLexerAndParserTables(Compiler.Tree.Tree);
-			dataGridErrors.ItemsSource = Compiler.Errors;
-			dgTokens.ItemsSource = Compiler.Tokens;
 		}
 
 		private void Run()

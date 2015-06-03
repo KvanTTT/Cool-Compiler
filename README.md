@@ -1,7 +1,7 @@
 Cool-Compiler
 =============
 
-Compiler for Cool programming language. Description of implemented cool language dialect is placed in roo directoru "Ñool Manual.pdf".
+Compiler for Cool programming language. Description of implemented cool language dialect is placed in root directory "Cool Manual.pdf".
 
 Used technologies and framework stack: 
 - ANTLRWorks
