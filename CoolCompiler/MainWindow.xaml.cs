@@ -60,7 +60,6 @@ namespace CoolCompiler
 
 			DispatcherTimer foldingUpdateTimer = new DispatcherTimer();
 			foldingUpdateTimer.Interval = TimeSpan.FromSeconds(2);
-			foldingUpdateTimer.Tick += foldingUpdateTimer_Tick;
 			foldingUpdateTimer.Start();
 
 			if (Settings.Default.WindowLeft != 0)
@@ -111,14 +110,6 @@ namespace CoolCompiler
 				}
 			}
 			// do not set e.Handled=true - we still want to insert the character that was typed
-		}
-
-		void foldingUpdateTimer_Tick(object sender, EventArgs e)
-		{
-			if (foldingStrategy != null)
-			{
-				foldingStrategy.UpdateFoldings(foldingManager, tbEditor.Document);
-			}
 		}
 
 		private void openFile_Click(object sender, RoutedEventArgs e)
