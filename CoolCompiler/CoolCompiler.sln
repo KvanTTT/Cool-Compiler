@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoolCompiler", "CoolCompiler.csproj", "{8E9F8E8D-5643-4938-8DD7-896A1E542FCC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoolCompiler", "CoolCompiler.csproj", "{2ADD927C-A7F0-4EC5-99DC-47CC0A6F989B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8E9F8E8D-5643-4938-8DD7-896A1E542FCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E9F8E8D-5643-4938-8DD7-896A1E542FCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E9F8E8D-5643-4938-8DD7-896A1E542FCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E9F8E8D-5643-4938-8DD7-896A1E542FCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ADD927C-A7F0-4EC5-99DC-47CC0A6F989B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{2ADD927C-A7F0-4EC5-99DC-47CC0A6F989B}.Release|Any CPU.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

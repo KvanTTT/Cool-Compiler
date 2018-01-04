@@ -28,7 +28,7 @@ namespace CoolCompiler
 	{
 		string CurrentFileName;
 		CompletionWindow completionWindow;
-		AbstractFoldingStrategy foldingStrategy;
+		CoolFoldingStrategy foldingStrategy;
 		FoldingManager foldingManager;
 		Compiler Compiler;
 		StringBuilder Log;

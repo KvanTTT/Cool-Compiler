@@ -26,7 +26,7 @@ namespace CoolCompiler
 	/// <summary>
 	/// Allows producing foldings from a document based on braces.
 	/// </summary>
-	public class CoolFoldingStrategy : AbstractFoldingStrategy
+	public class CoolFoldingStrategy
 	{
 		/// <summary>
 		/// Gets/Sets the opening brace. The default value is '{'.
@@ -43,14 +43,14 @@ namespace CoolCompiler
 		/// </summary>
 		public CoolFoldingStrategy()
 		{
-			this.OpeningBrace = '{';
-			this.ClosingBrace = '}';
+			OpeningBrace = '{';
+			ClosingBrace = '}';
 		}
 		
 		/// <summary>
 		/// Create <see cref="NewFolding"/>s for the specified document.
 		/// </summary>
-		public override IEnumerable<NewFolding> CreateNewFoldings(TextDocument document, out int firstErrorOffset)
+		public IEnumerable<NewFolding> CreateNewFoldings(TextDocument document, out int firstErrorOffset)
 		{
 			firstErrorOffset = -1;
 			return CreateNewFoldings(document);
